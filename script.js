@@ -3,6 +3,7 @@ fetch('./command.json')
 .then(res=>res.json())
 .then(res=>data=res)
 .catch((err)=>{console.log(err)});
+
 document.addEventListener("keypress",(e)=>{if(e.key=='Enter'){send()}});
 
 function Reply(command){
