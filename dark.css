@@ -73,7 +73,7 @@ body,#cont {
   }
   #textbox{
       width: 100%;height: 100%;
-      display: flex;background-color: #202C33;
+      display: flex;background-color: transparent;
       justify-content: center;
       align-items: center;
   }
