@@ -4,54 +4,72 @@ fetch('./command.json')
 .then(res=>data=res)
 .catch((err)=>{console.log(err)});
 
-document.addEventListener("keypress",(e)=>{if(e.key=='Enter'){send()}});
+//reply function
 
-function Reply(command){
-    if(command=="clear"){
-        document.getElementById('chatbox').innerHTML="";
-    }
-    else{
-    var cont=document.getElementById('chatbox');
-    var box=document.createElement('div');
-    box.setAttribute("id","bcmd");
-    var text=document.createElement('div');
-    text.setAttribute("id","botc");
-   
+function displayMessage(command){
+  
+  var newDiv = document.createElement("div");
+  newDiv.className = "chat-bubble";
+  var newImg = document.createElement("img");
+  newImg.className = "bot image";
+  var newP = document.createElement("p");
     if(data[command]!=undefined){
-        text.textContent=data[command];
+        newP.textContent=data[command];
     }
     else{
-        text.textContent="I'm sorry, I don't have the answer to that. Can you please ask me something else?";
+        newP.textContent="I'm sorry, I don't have the answer to that. Can you please ask me something else?";
     }
-    var imgc=document.createElement('div');
-    imgc.setAttribute("id","botimg");
-    var img=document.createElement('img');
-    img.src="./assets/bot.png";
-    imgc.appendChild(img);
-    box.appendChild(imgc);
-    box.appendChild(text);
-    cont.appendChild(box);
-    var div=document.getElementById('chat');
-    div.scrollTop=div.scrollHeight;
-    }
-    document.getElementById('command').value="";
+  newDiv.appendChild(newImg)
+  newDiv.appendChild(newP);
+  
+  
+  var messages = document.getElementById("chat-contents");
+  messages.appendChild(newDiv);
 }
-function send(){
-    var cd=document.getElementById("command").value;
-    var cmd=cd.toLowerCase();
-    if(cmd!=""){
-        var cont=document.getElementById('chatbox');
-        var box=document.createElement('div');
-        box.setAttribute("id","ucmd");
-        var text=document.createElement('div');
-        text.setAttribute("id","uc");
-        text.textContent=cmd;
-        box.appendChild(text);
-        cont.appendChild(box);
-        
-        Reply(cmd)
-    }
-   else{
-       alert('write any command');
-   }
+
+function arrowSubmit(){
+  console.log("here")
+  button = document.getElementById("submit-chat");
+  text = document.getElementById("chat-message-value");
+  if( text.value != ""){
+    button.classList = "active";
+  }else{
+    button.classList.remove("active");
+  }
 }
+
+function submitMessage(){
+  var text = document.getElementById("chat-message-value").value;
+  if(text == ""){
+    return
+  }
+  document.getElementById("chat-message-value").value = "";
+  
+  var newDiv = document.createElement("div");
+  newDiv.className = "chat-bubble";
+  var newImg = document.createElement("img");
+  newImg.className = "user image";
+  var newP = document.createElement("p");
+  newP.innerHTML = text;
+  newDiv.appendChild(newImg);
+  newDiv.appendChild(newP);
+  
+  var messages = document.getElementById("chat-contents");
+  messages.appendChild(newDiv);
+  document.getElementById("submit-chat").classList.remove("active");
+  setTimeout(function(){displayMessage(document.getElementById("chat-message-value").value)}, 1000);
+
+}
+
+function addHandlers(){
+  document.getElementById("submit-chat").addEventListener("click", submitMessage);
+  document.onkeypress = function (e){
+    if( e.keyCode == 13 ){
+      document.getElementById("submit-chat").click();
+    }
+  };
+  setTimeout(function(){displayMessage(document.getElementById("chat-message-value").value)}, 1500);
+  document.getElementById("chat-message-value").addEventListener("input", arrowSubmit);
+}
+
+window.addEventListener("load", addHandlers);
