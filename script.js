@@ -23,12 +23,7 @@ function Reply(command){
     else{
         text.textContent="I'm sorry, I don't have the answer to that. Can you please ask me something else?";
     }
-    var imgc=document.createElement('div');
-    imgc.setAttribute("id","botimg");
-    var img=document.createElement('img');
-    img.src="./assets/bot.png";
-    imgc.appendChild(img);
-    box.appendChild(imgc);
+   
     box.appendChild(text);
     cont.appendChild(box);
     var div=document.getElementById('chat');
