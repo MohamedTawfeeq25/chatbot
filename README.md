@@ -1,6 +1,7 @@
 <h1>ChatBOT</h1>
 <p>This project is a front-end web-based chatbot that allows users to have conversations with an  bot through a simple web interface. The chatbot is built using HTML, CSS, and JavaScript and runs on a Vite server. The main function of this bot is to interact with the users by replying to their commands  and it can perform mathematical calculations with an execute command and explain certain questions with images.</p>
 <h1>Preview</h1>
+<p><img src="./assets/preview.png"/></p>
 <h1>Getting Started</h1>
 <p>To get started with the chatbot, you'll need to do the following:</p>
 <ol>
