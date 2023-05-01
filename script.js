@@ -10,14 +10,21 @@ function Reply(command){
     if(command=="clear"){
         document.getElementById('chatbox').innerHTML="";
     }
+ 
     else{
     var cont=document.getElementById('chatbox');
     var box=document.createElement('div');
     box.setAttribute("id","bcmd");
     var text=document.createElement('div');
     text.setAttribute("id","botc");
-   
-    if(data[command]!=undefined){
+    if(command.slice(0,7)=="execute"){
+        var ex="";
+        for(var i=8;i<command.length;i++){
+            ex+=command[i];
+        }
+        text.textContent = eval(ex);
+    }
+    else if(data[command]!=undefined){
         text.textContent=data[command];
     }
     else{
