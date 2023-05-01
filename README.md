@@ -10,6 +10,12 @@
 <li>Start the Vite server by running 'npm run dev'</li>
 <li>Open your web browser and navigate to http://localhost:5173</li>
 </ol>
+<h1>Customization</h1>
+<p>you can customize the chatbot's command by following steps:</p>
+<ul>
+<li>clone the repo</li>
+<li>Add the required command and response at ./command.json file</li>
+<li>After customization the bot can respond to the customized commands</li>
 <h1>Usage</h1>
 <p>To use the chatbot, simply type your message into the input field at the bottom of the chat window and press Enter. The chatbot will then process your message and provide a response.</p>
 <h1>Technologies Used</h1>
