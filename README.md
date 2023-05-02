@@ -1,5 +1,11 @@
 <h1>ChatBOT</h1>
 <p>This project is a front-end web-based chatbot that allows users to have conversations with an  bot through a simple web interface. The chatbot is built using HTML, CSS, and JavaScript and runs on a Vite server. The main function of this bot is to interact with the users by replying to their commands  and it can perform mathematical calculations with an execute command and explain certain questions with images.</p>
+<h1>Features</h1>
+<ul>
+<li>Perform mathematical calculation</li>
+<li>can tell you the capital of states in india</li>
+<li>can tell you a joke</li>
+</ul>
 <h1>Preview</h1>
 <p><img src="./assets/preview.png"/></p>
 <h1>Getting Started</h1>
@@ -10,6 +16,7 @@
 <li>Start the Vite server by running 'npm run dev'</li>
 <li>Open your web browser and navigate to http://localhost:5173</li>
 </ol>
+
 <h1>Customization</h1>
 <p>you can customize the chatbot's command by following steps:</p>
 <ul>

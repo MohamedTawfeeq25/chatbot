@@ -1,10 +1,8 @@
-var data;
-import da from './command.json';
+
+import data from './command';
 import { Dyear, Time } from './modules/date.js';
-console.log(Dyear());
-console.log(Time());
-data=da;
-document.addEventListener("keypress",(e)=>{if(e.key=='Enter'){send()}});
+
+
 
 function Reply(command){
     if(command=="clear"){
@@ -16,7 +14,7 @@ function Reply(command){
     var box=document.createElement('div');
     box.setAttribute("id","bcmd");
     var text=document.createElement('div');
-    text.setAttribute("id","botc");
+    text.setAttribute("id","botc");   
     if(command.slice(0,7)=="execute"){
         var ex="";
         for(var i=8;i<command.length;i++){
@@ -30,12 +28,30 @@ function Reply(command){
     else if(command=="date"){
         text.textContent=Dyear();
     }
-    else if(data[command]!=undefined){
-        text.textContent=data[command];
-    }
     else{
-        text.textContent="I'm sorry, I don't have the answer to that. Can you please ask me something else?";
-    }
+        if(command.slice(0,10)=='capital of'){
+            if(data.state_capital.commands[command.slice(11,command.length)]!=undefined){
+                text.textContent=data.state_capital.commands[command.slice(11,command.length)];
+            }
+            else{
+                text.textContent="the state is not found";
+            }
+        }
+        else{
+            for(let cmd in data.basic_command){
+                let pattern=new RegExp(data.basic_command[cmd].pattern,"i");
+                if(pattern.test(command)){
+                    text.textContent=data.basic_command[cmd].reply[Math.floor(Math.random()*data.basic_command[cmd].reply.length)];                  
+                    break;
+                }
+                else{
+                    console.log(pattern.test(command))
+                }
+            
+            }
+        }
+    }    
+
    
     box.appendChild(text);
     cont.appendChild(box);
@@ -63,3 +79,5 @@ function send(){
        alert('write any command');
    }
 }
+document.addEventListener("keypress",(e)=>{if(e.key=='Enter'){send()}});
+document.getElementById("send").addEventListener("click",()=>{send()});
