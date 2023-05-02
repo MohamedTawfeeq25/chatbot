@@ -1,9 +1,9 @@
 var data;
-fetch('./command.json')
-.then(res=>res.json())
-.then(res=>data=res)
-.catch((err)=>{console.log(err)});
-
+import da from './command.json';
+import { Dyear, Time } from './modules/date.js';
+console.log(Dyear());
+console.log(Time());
+data=da;
 document.addEventListener("keypress",(e)=>{if(e.key=='Enter'){send()}});
 
 function Reply(command){
@@ -23,6 +23,12 @@ function Reply(command){
             ex+=command[i];
         }
         text.textContent = eval(ex);
+    }
+    else if(command=="time"){
+        text.textContent=Time();
+    }
+    else if(command=="date"){
+        text.textContent=Dyear();
     }
     else if(data[command]!=undefined){
         text.textContent=data[command];
